@@ -118,8 +118,12 @@ while True:
         parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
 
         print("Today is ", today)
-        print("The park opens at ", parkOpen)
-        print("The park closes at ", parkClose)
+        if (parkClose is not None):
+            print("The park opens at ", parkOpen)
+            print("The park closes at ", parkClose)
+            updateRate = UPDATE_DELAY
+        else:
+            print("Looks like there's no hours posted today, assuming it's closed!")
 
     # end if
 
@@ -138,11 +142,16 @@ while True:
         # If Time is 1 hour (or buffer time) before opening or 1 hours (or buffer time) after closing and this is new to us, turn off all the leds
         if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
             cleanUp = True
-
+            if (now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
+                updateRate = CLOSED_UPDATE_DELAY
             print("Looks like we're closed right now, let's turn off the leds!")
+
+            pixels.clear()
 
             # turn off all LEDs
         
+        
+
         # else update the wait times
         elif (now >= (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) and now <= (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
             print("We're open! Let's update the rides wait times!")
@@ -191,6 +200,7 @@ while True:
         if cleanUp is False:
             # Turn off the leds as well
             print('Turn off lights')
+            pixels.clear()
 
     print("I'm sleepy, I'll see you in 5 minutes")
     time.sleep(60 * updateRate)

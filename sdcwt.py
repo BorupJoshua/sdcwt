@@ -38,6 +38,7 @@ COLOR_15_TO_45_WAIT = (150,105,0)
 COLOR_45_TO_75_WAIT = (125,125,0)
 COLOR_75_TO_120_WAIT = (55,200,0)
 COLOR_120_OR_HIGHER = (0,125,125)
+COLOR_CLOSED = (0,0,50)
 
 LED_PIN = board.D18
 LED_COUNT = 13
@@ -156,15 +157,16 @@ while True:
                         print('Closed')
                         # -1 = closed
                         waitTimes[iterNum] = -1
+                        pixels[iterNum] = COLOR_CLOSED
                     else:
                         if i['waitTime'] is None:
                             print("Less than 15 minutes")
                             waitTimes[iterNum] = 5
-                            pixels[i] = lookupColor(5)
+                            pixels[iterNum] = lookupColor(5)
                         else:
                             print(i['waitTime'])
                             waitTimes[iterNum] = i['waitTime']
-                            pixels[i] = lookupColor(i['waitTime'])
+                            pixels[iterNum] = lookupColor(i['waitTime'])
                     iterNum = iterNum + 1
 
             # Reset our iter Object

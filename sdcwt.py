@@ -39,6 +39,9 @@ COLOR_45_TO_75_WAIT = (125,125,0)
 COLOR_75_TO_120_WAIT = (55,200,0)
 COLOR_120_OR_HIGHER = (0,125,125)
 
+LED_PIN = board.D18
+LED_COUNT = 13
+LED_ORDER = neopixel.GRB
 
 #WAIT TIME JSON
 WAIT_TIME_URL = "http://pulse.hfecorp.com/api/waitTimes/2"
@@ -74,7 +77,7 @@ parkClose = None
 updateRate = UPDATE_DELAY
 cleanUp = False
 iterNum = 0
-pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, auto_write = True)
+pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, pixel_order = LED_ORDER, auto_write = True)
 
 
 while True:

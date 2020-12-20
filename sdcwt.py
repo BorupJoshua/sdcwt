@@ -53,9 +53,9 @@ def lookupColor(waitTime):
         return COLOR_NO_WAIT_OR_OPEN
     if waitTime > 15 and waitTime < 45:
         return COLOR_15_TO_45_WAIT
-    if waitTime => 45 and waitTime < 75:
+    if waitTime >= 45 and waitTime < 75:
         return COLOR_45_TO_75_WAIT
-    if waitTime => 75 and waitTime < 120:
+    if waitTime     >= 75 and waitTime < 120:
         return COLOR_75_TO_120_WAIT
     else:
         return COLOR_120_OR_HIGHER

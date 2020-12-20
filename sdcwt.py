@@ -157,10 +157,11 @@ while True:
                         if i['waitTime'] is None:
                             print("Less than 15 minutes")
                             waitTimes[iterNum] = 5
-                            pixels[i] = 
+                            pixels[i] = lookupColor(5)
                         else:
                             print(i['waitTime'])
                             waitTimes[iterNum] = i['waitTime']
+                            pixels[i] = lookupColor(i['waitTime'])
                     iterNum = iterNum + 1
 
             # Reset our iter Object

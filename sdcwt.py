@@ -153,7 +153,7 @@ while True:
                 # if the current entry in the file is one we listed
                 if i['rideName'] in RIDES:
                     print(i['rideName'])
-                    pixels[itermNum] = (255,255,255)
+                    pixels[iterNum] = (255,255,255)
                     # If the waitTime is null, it's probably closed
                     if (i['operationStatus'] != "OPEN" ):
                         print('Closed')

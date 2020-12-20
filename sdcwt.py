@@ -127,6 +127,7 @@ while True:
 
         print("The park is NOT closed today!")
         now = datetime.datetime.now()
+        print(parkClose + datetime.timedelta(minutes=60))
         # If Time is 1 hour (or buffer time) before opening or 1 hours (or buffer time) after closing and this is new to us, turn off all the leds
         if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
             cleanUp = True
@@ -136,7 +137,6 @@ while True:
             # turn off all LEDs
         
         # else update the wait times
-        print(parkClose + datetime.timedelta(minutes=60))
         elif (now >= (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) and now <= (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
             print("We're open! Let's update the rides wait times!")
             

@@ -33,6 +33,8 @@ RIDES = {
 
 LED_NUM = {1,2,3,4,5,6,7,8,9,10,11,12,13}
 
+BRIGHTNESS = 0.8
+
 COLOR_NO_WAIT_OR_OPEN = (200,55,0)
 COLOR_15_TO_45_WAIT = (150,105,0)
 COLOR_45_TO_75_WAIT = (125,125,0)
@@ -78,7 +80,7 @@ parkClose = None
 updateRate = UPDATE_DELAY
 cleanUp = False
 iterNum = 0
-pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, pixel_order = LED_ORDER, auto_write = True)
+pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, pixel_order = LED_ORDER, brightness = BRIGHTNESS, auto_write = True)
 
 
 while True:

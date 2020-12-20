@@ -33,7 +33,7 @@ RIDES = {
 
 LED_NUM = {1,2,3,4,5,6,7,8,9,10,11,12,13}
 
-BRIGHTNESS = 0.8
+BRIGHTNESS = 0.25
 
 COLOR_NO_WAIT_OR_OPEN = (200,55,0)
 COLOR_15_TO_45_WAIT = (150,105,0)
@@ -136,6 +136,7 @@ while True:
             # turn off all LEDs
         
         # else update the wait times
+        print(parkClose + datetime.timedelta(minutes=60))
         elif (now >= (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) and now <= (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
             print("We're open! Let's update the rides wait times!")
             

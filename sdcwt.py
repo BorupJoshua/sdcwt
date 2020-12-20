@@ -7,12 +7,12 @@ import neopixel
 import board
 
 #-- CONFIG
-UPDATE_DELAY = 5 # In Minutes
+UPDATE_DELAY = 5 # In minutes
 
 CLOSED_UPDATE_DELAY = 60 # In minutes
 
 # Turn on BUFFER_TIME before park opening and BUFFER_TIME after
-BUFFER_TIME = 60 # In Minutes
+BUFFER_TIME = 60 # In minutes
 
 #RIDES WE WANT TO LOOK AT
 RIDES = {
@@ -31,20 +31,25 @@ RIDES = {
     "Wildfire"
     }
 
+# In order of the RIDES, set the position of the led. 
 LED_NUM = {1,2,3,4,5,6,7,8,9,10,11,12,13}
 
+# Brightness of the leds
 BRIGHTNESS = 0.25
 
-COLOR_NO_WAIT_OR_OPEN = (200,55,0)
-COLOR_15_TO_45_WAIT = (150,105,0)
-COLOR_45_TO_75_WAIT = (125,125,0)
+# Color codes in Green,Red,Blue
+COLOR_NO_WAIT_OR_OPEN = (200,15,0)
+COLOR_15_TO_45_WAIT = (150,50,0)
+COLOR_45_TO_75_WAIT = (100,150,0)
 COLOR_75_TO_120_WAIT = (0,255,0)
 COLOR_120_OR_HIGHER = (0,125,125)
 COLOR_CLOSED = (0,0,50)
 
+#Pin on the board
 LED_PIN = board.D18
-LED_COUNT = 13
-LED_ORDER = neopixel.GRB
+
+#Total pins on your string
+LED_COUNT = 50
 
 #WAIT TIME JSON
 WAIT_TIME_URL = "http://pulse.hfecorp.com/api/waitTimes/2"
@@ -80,7 +85,7 @@ parkClose = None
 updateRate = UPDATE_DELAY
 cleanUp = False
 iterNum = 0
-pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, pixel_order = LED_ORDER, brightness = BRIGHTNESS, auto_write = True)
+pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, pixel_order = neopixel.GRB, brightness = BRIGHTNESS, auto_write = True)
 
 
 while True:
@@ -122,13 +127,14 @@ while True:
     # If the parkOpen is not null then continue, else we change the update check to be every hour.
     if parkOpen is not None:
 
+        print("The park is NOT closed today!")
+
         #Set our update rate to the one we defined
         updateRate = UPDATE_DELAY
 
-        print("The park is NOT closed today!")
+        # Create a now object of the current time.
         now = datetime.datetime.now()
-        print(parkClose + datetime.timedelta(minutes=60))
-        print(now)
+
         # If Time is 1 hour (or buffer time) before opening or 1 hours (or buffer time) after closing and this is new to us, turn off all the leds
         if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
             cleanUp = True

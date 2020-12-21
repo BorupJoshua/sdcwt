@@ -7,9 +7,9 @@ import neopixel
 import board
 
 #-- CONFIG
-UPDATE_DELAY = 0.25 # In minutes
+UPDATE_DELAY = 5 # In minutes
 
-CLOSED_UPDATE_DELAY = 0.25 # In minutes
+CLOSED_UPDATE_DELAY = 60 # In minutes
 
 # Turn on BUFFER_TIME before park opening and BUFFER_TIME after
 BUFFER_TIME = 85 # In minutes

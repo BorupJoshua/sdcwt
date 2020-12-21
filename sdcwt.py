@@ -39,8 +39,8 @@ BRIGHTNESS = 0.25
 
 # Color codes in Green,Red,Blue
 COLOR_NO_WAIT_OR_OPEN = (100,15,0)
-COLOR_15_TO_45_WAIT = (150,50,0)
-COLOR_45_TO_75_WAIT = (100,150,0)
+COLOR_15_TO_45_WAIT = (100,50,0)
+COLOR_45_TO_75_WAIT = (50,250,0)
 COLOR_75_TO_120_WAIT = (0,255,0)
 COLOR_120_OR_HIGHER = (0,125,125)
 COLOR_CLOSED = (0,0,50)
@@ -204,3 +204,4 @@ while True:
 
     print("I'm sleepy, I'll see you in 5 minutes")
     time.sleep(60 * updateRate)
+

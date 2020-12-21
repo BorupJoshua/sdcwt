@@ -32,7 +32,7 @@ RIDES = {
     }
 
 # In order of the RIDES, set the position of the led. 
-LED_NUM = {1,2,3,4,5,6,7,8,9,10,11,12,13}
+LED_NUM = {1,2,3,4,23,6,7,8,9,10,11,12,13}
 
 # Brightness of the leds
 BRIGHTNESS = 0.25

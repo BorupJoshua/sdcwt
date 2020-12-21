@@ -12,7 +12,7 @@ UPDATE_DELAY = 5 # In minutes
 CLOSED_UPDATE_DELAY = 60 # In minutes
 
 # Turn on BUFFER_TIME before park opening and BUFFER_TIME after
-BUFFER_TIME = 85 # In minutes
+BUFFER_TIME = 60 # In minutes
 
 #RIDES WE WANT TO LOOK AT
 RIDES = {

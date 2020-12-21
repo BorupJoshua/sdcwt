@@ -7,9 +7,9 @@ import neopixel
 import board
 
 #-- CONFIG
-UPDATE_DELAY = 5 # In minutes
+UPDATE_DELAY = 0.25 # In minutes
 
-CLOSED_UPDATE_DELAY = 60 # In minutes
+CLOSED_UPDATE_DELAY = 0.25 # In minutes
 
 # Turn on BUFFER_TIME before park opening and BUFFER_TIME after
 BUFFER_TIME = 60 # In minutes
@@ -138,7 +138,7 @@ while True:
 
         # Create a now object of the current time.
         now = datetime.datetime.now()
-
+        print(now)
         # If Time is 1 hour (or buffer time) before opening or 1 hours (or buffer time) after closing and this is new to us, turn off all the leds
         if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
             cleanUp = True

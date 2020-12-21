@@ -146,7 +146,7 @@ while True:
                 updateRate = CLOSED_UPDATE_DELAY
             print("Looks like we're closed right now, let's turn off the leds!")
 
-            pixels.clear()
+            pixels.fill((0,0,0))
 
             # turn off all LEDs
         
@@ -200,7 +200,7 @@ while True:
         if cleanUp is False:
             # Turn off the leds as well
             print('Turn off lights')
-            pixels.clear()
+            pixels.fill((0,0,0))
 
     print("I'm sleepy, I'll see you in 5 minutes")
     time.sleep(60 * updateRate)

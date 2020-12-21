@@ -176,16 +176,16 @@ while True:
                         print('Closed')
                         # -1 = closed
                         waitTimes[iterNum] = -1
-                        pixels[iterNum] = COLOR_CLOSED
+                        pixels[LED_NUM[iterNum]] = COLOR_CLOSED
                     else:
                         if i['waitTime'] is None:
                             print("Less than 15 minutes")
                             waitTimes[iterNum] = 5
-                            pixels[iterNum] = lookupColor(5)
+                            pixels[LED_NUM[iterNum]] = lookupColor(5)
                         else:
                             print(i['waitTime'])
                             waitTimes[iterNum] = i['waitTime']
-                            pixels[iterNum] = lookupColor(i['waitTime'])
+                            pixels[LED_NUM[iterNum]] = lookupColor(i['waitTime'])
                     iterNum = iterNum + 1
 
             # Reset our iter Object

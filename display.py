@@ -73,7 +73,7 @@ draw.text(
 )
 
 
-if parkOpen is True:
+if parkOpen == True:
 
     comp_height = font_height + 6
 
@@ -134,8 +134,9 @@ draw.text(
 )
 
 
-draw.line([(0,15),(128,15)], fill=1, width=2)
-draw.line([(0,53),(128,53)], fill=1, width=1)
+#draw.line([(0,15),(128,15)], fill=1, width=2)
+
+#draw.line([(0,53),(128,53)], fill=1, width=1)
 
 
 # Display image

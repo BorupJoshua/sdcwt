@@ -173,6 +173,8 @@ while True:
             fill=0,
         )
         
+        oled.fill(0)
+        oled.show()
         text1 = now.strftime("%B %d, %Y")
 
         (font_width, font_height) = font.getsize(text1)

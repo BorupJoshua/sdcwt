@@ -116,7 +116,7 @@ draw.text(
     anchor="m",
 )
 
-draw.line([(0,8),(128,8)], width=2)
+draw.line([(0,16),(128,16)], fill=1, width=2)
 
 
 

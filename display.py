@@ -58,8 +58,8 @@ now = datetime.datetime.now()
 text = now.strftime("%B %d, %Y")
 text2 = "Opens"
 text3 = "Closes"
-text4 = "10:00 AM"
-text5 = "11:59 PM"
+text4 = "10:00am"
+text5 = "11:59pm"
 (font_width, font_height) = font.getsize(text)
 draw.text(
     (oled.width // 2 - font_width // 2, font_height // 2),
@@ -75,13 +75,13 @@ comp_height = font_height + 2
 (font4_width, font4_height) = font.getsize(text4)
 (font5_width, font5_height) = font.getsize(text5)
 draw.text(
-    (font2_width // 2, (font2_height // 2) + comp_height),
+    (font4_width // 2, (font2_height // 2) + comp_height),
     text2,
     font=font,
     fill=255,
 )
 draw.text(
-    (oled.width - font3_width, (font2_height // 2) + comp_height),
+    (oled.width - font5_width, (font2_height // 2) + comp_height),
     text3,
     font=font,
     fill=255,

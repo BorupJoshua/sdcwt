@@ -95,7 +95,7 @@ draw.text(
 comp_height = comp_height + 2 + font2_height
 
 draw.text(
-    (font4_width // 2, (font2_height // 2) + comp_height),
+    (0, (font2_height // 2) + comp_height),
     text4,
     font=font,
     fill=255,
@@ -117,7 +117,7 @@ draw.text(
 )
 
 draw.line([(0,15),(128,15)], fill=1, width=2)
-
+draw.line([(0,54),(128,54)], fill=1, width=1)
 
 
 

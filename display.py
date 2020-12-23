@@ -24,6 +24,8 @@ WIDTH = 128
 HEIGHT = 64  # Change to 64 if needed
 BORDER = 1
 
+parkOpen = True
+
 # Use for I2C.
 i2c = board.I2C()
 oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c)
@@ -70,44 +72,59 @@ draw.text(
     anchor="mm",
 )
 
-comp_height = font_height + 6
 
-(font2_width, font2_height) = font.getsize(text2)
-(font3_width, font3_height) = font.getsize(text3)
-(font4_width, font4_height) = font.getsize(text4)
-(font5_width, font5_height) = font.getsize(text5)
-(font6_width, font6_height) = font.getsize(text6)
-draw.text(
-    (18, (font2_height // 2) + comp_height),
-    text2,
-    font=font,
-    fill=255,
-    anchor="mm",
-)
-draw.text(
-    (oled.width - font5_width-8, (font2_height // 2) + comp_height),
-    text3,
-    font=font,
-    fill=255,
-    anchor="mm",
-)
+if parkOpen is True:
 
-comp_height = comp_height + 2 + font2_height
+    comp_height = font_height + 6
 
-draw.text(
-    (12, (font2_height // 2) + comp_height),
-    text4,
-    font=font,
-    fill=255,
-    anchor="mm",
-)
-draw.text(
-    (oled.width - font5_width-10, (font2_height // 2) + comp_height),
-    text5,
-    font=font,
-    fill=255,
-    anchor="mm",
-)
+    (font2_width, font2_height) = font.getsize(text2)
+    (font3_width, font3_height) = font.getsize(text3)
+    (font4_width, font4_height) = font.getsize(text4)
+    (font5_width, font5_height) = font.getsize(text5)
+    (font6_width, font6_height) = font.getsize(text6)
+    draw.text(
+        (18, (font2_height // 2) + comp_height),
+        text2,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+    draw.text(
+        (oled.width - font5_width-8, (font2_height // 2) + comp_height),
+        text3,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+
+    comp_height = comp_height + 2 + font2_height
+
+    draw.text( 
+        (12, (font2_height // 2) + comp_height),
+        text4,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+    draw.text(
+        (oled.width - font5_width-10, (font2_height // 2) + comp_height),
+        text5,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+
+    draw.line([(63,15),(63,53)], fill=1, width=1)
+
+else:
+    draw.text(
+        (oled.width//2 - font6_width//2, 32),
+        'Closed Today',
+        font=font,
+        fill=255,
+        anchor="mm",
+
+
 draw.text(
     (oled.width//2 - font6_width//2, oled.height - (font6_height)),
     text6,
@@ -118,9 +135,6 @@ draw.text(
 
 draw.line([(0,15),(128,15)], fill=1, width=2)
 draw.line([(0,53),(128,53)], fill=1, width=1)
-draw.line([(63,15),(63,53)], fill=1, width=1)
-
-
 
 
 # Display image

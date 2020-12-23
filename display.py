@@ -81,7 +81,7 @@ draw.text(
     fill=255,
 )
 draw.text(
-    (oled.width - font5_width // 2, (font2_height // 2) + comp_height),
+    (oled.width - font5_width, (font2_height // 2) + comp_height),
     text3,
     font=font,
     fill=255,
@@ -96,7 +96,7 @@ draw.text(
     fill=255,
 )
 draw.text(
-    (oled.width - font5_width // 2, (font2_height // 2) + comp_height),
+    (oled.width - font5_width, (font2_height // 2) + comp_height),
     text5,
     font=font,
     fill=255,

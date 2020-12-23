@@ -78,14 +78,14 @@ comp_height = font_height + 2
 (font5_width, font5_height) = font.getsize(text5)
 (font6_width, font6_height) = font.getsize(text6)
 draw.text(
-    (10, (font2_height // 2) + comp_height),
+    (15, (font2_height // 2) + comp_height),
     text2,
     font=font,
     fill=255,
     anchor="mm",
 )
 draw.text(
-    (oled.width - font5_width-3, (font2_height // 2) + comp_height),
+    (oled.width - font5_width-8, (font2_height // 2) + comp_height),
     text3,
     font=font,
     fill=255,
@@ -95,14 +95,14 @@ draw.text(
 comp_height = comp_height + 2 + font2_height
 
 draw.text(
-    (5, (font2_height // 2) + comp_height),
+    (10, (font2_height // 2) + comp_height),
     text4,
     font=font,
     fill=255,
     anchor="mm",
 )
 draw.text(
-    (oled.width - font5_width-5, (font2_height // 2) + comp_height),
+    (oled.width - font5_width-10, (font2_height // 2) + comp_height),
     text5,
     font=font,
     fill=255,

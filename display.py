@@ -24,7 +24,7 @@ WIDTH = 128
 HEIGHT = 64  # Change to 64 if needed
 BORDER = 1
 
-parkOpen = True
+parkOpen = False
 
 # Use for I2C.
 i2c = board.I2C()

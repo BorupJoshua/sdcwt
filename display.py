@@ -81,7 +81,6 @@ if parkOpen == True:
     (font3_width, font3_height) = font.getsize(text3)
     (font4_width, font4_height) = font.getsize(text4)
     (font5_width, font5_height) = font.getsize(text5)
-    (font6_width, font6_height) = font.getsize(text6)
     draw.text(
         (18, (font2_height // 2) + comp_height),
         text2,
@@ -126,6 +125,7 @@ else:
     )
 
 
+(font6_width, font6_height) = font.getsize(text6)
 draw.text(
     (oled.width//2 - font6_width//2, oled.height - (font6_height)),
     text6,

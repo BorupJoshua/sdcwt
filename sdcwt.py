@@ -338,6 +338,12 @@ while True:
 
     now = datetime.datetime.now()
 
+    draw.rectangle(
+        (2,54,126,63),
+        outline=0,
+        fill=0,
+    )
+
     text6 = "Updated: " + now.strftime("%I:%M%p")
     (font6_width, font6_height) = font.getsize(text6)
     draw.text(

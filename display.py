@@ -11,6 +11,9 @@ import board
 import digitalio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
+import datetime
+import time
+
 
 # Define the Reset Pin
 oled_reset = digitalio.DigitalInOut(board.D4)
@@ -51,7 +54,8 @@ draw.rectangle(
 font = ImageFont.load_default()
 
 # Draw Some Text
-text = "Hello World!"
+now = datetime.datetime.now()
+text = now.strftime("%B %d, %Y")
 (font_width, font_height) = font.getsize(text)
 draw.text(
     (oled.width // 2 - font_width // 2, font_height // 2),

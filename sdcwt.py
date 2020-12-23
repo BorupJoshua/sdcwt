@@ -110,6 +110,10 @@ image = Image.new("1", (oled.width, oled.height))
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
 
+
+# Load default font.
+font = ImageFont.load_default()
+
 # Draw a white background
 draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
 

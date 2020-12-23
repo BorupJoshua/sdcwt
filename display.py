@@ -67,7 +67,7 @@ draw.text(
     text,
     font=font,
     fill=255,
-    anchor="m",
+    anchor="mm",
 )
 
 comp_height = font_height + 2
@@ -82,38 +82,38 @@ draw.text(
     text2,
     font=font,
     fill=255,
-    anchor="m",
+    anchor="mm",
 )
 draw.text(
     (oled.width - font5_width, (font2_height // 2) + comp_height),
     text3,
     font=font,
     fill=255,
-    anchor="m",
+    anchor="mm",
 )
 
 comp_height = comp_height + 2 + font2_height
 
 draw.text(
-    (0, (font2_height // 2) + comp_height),
+    (5, (font2_height // 2) + comp_height),
     text4,
     font=font,
     fill=255,
-    anchor="m",
+    anchor="mm",
 )
 draw.text(
     (oled.width - font5_width, (font2_height // 2) + comp_height),
     text5,
     font=font,
     fill=255,
-    anchor="m",
+    anchor="mm",
 )
 draw.text(
     (oled.width//2 - font6_width//2, oled.height - (font6_height)),
     text6,
     font=font,
     fill=255,
-    anchor="m",
+    anchor="mm",
 )
 
 draw.line([(0,15),(128,15)], fill=1, width=2)

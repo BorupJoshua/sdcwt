@@ -70,10 +70,10 @@ draw.text(
 
 comp_height = font_height + 2
 
-(font2_wdith, font2_height) = font.getsize(text2)
-(font3_wdith, font3_height) = font.getsize(text3)
-(font4_wdith, font4_height) = font.getsize(text4)
-(font5_wdith, font5_height) = font.getsize(text5)
+(font2_width, font2_height) = font.getsize(text2)
+(font3_width, font3_height) = font.getsize(text3)
+(font4_width, font4_height) = font.getsize(text4)
+(font5_width, font5_height) = font.getsize(text5)
 draw.text(
     (font4_width // 2, (font2_height // 2) + comp_height),
     text2,

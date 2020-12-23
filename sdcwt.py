@@ -10,9 +10,9 @@ from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 
 #-- CONFIG
-UPDATE_DELAY = 5 # In minutes
+UPDATE_DELAY = 0.25 # In minutes
 
-CLOSED_UPDATE_DELAY = 60 # In minutes
+CLOSED_UPDATE_DELAY = 0.25 # In minutes
 
 # Turn on BUFFER_TIME before park opening and BUFFER_TIME after
 BUFFER_TIME = 60 # In minutes

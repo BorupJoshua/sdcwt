@@ -71,6 +71,7 @@ draw.text(
     fill=255,
     anchor="mm",
 )
+(font6_width, font6_height) = font.getsize(text6)
 
 
 if parkOpen == True:
@@ -125,7 +126,6 @@ else:
     )
 
 
-(font6_width, font6_height) = font.getsize(text6)
 draw.text(
     (oled.width//2 - font6_width//2, oled.height - (font6_height)),
     text6,

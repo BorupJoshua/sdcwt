@@ -22,7 +22,7 @@ oled_reset = digitalio.DigitalInOut(board.D4)
 # to the right size for your display!
 WIDTH = 128
 HEIGHT = 64  # Change to 64 if needed
-BORDER = 5
+BORDER = 2
 
 # Use for I2C.
 i2c = board.I2C()

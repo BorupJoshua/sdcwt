@@ -175,10 +175,10 @@ while True:
         
         text1 = now.strftime("%B %d, %Y")
 
-        (font_width, font_height) = font.getsize(text)
+        (font_width, font_height) = font.getsize(text1)
         draw.text(
             (oled.width // 2 - font_width // 2, font_height // 2-3),
-            text,
+            text1,
             font=font,
             fill=255,
             anchor="mm",

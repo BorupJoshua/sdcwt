@@ -60,12 +60,14 @@ text2 = "Opens"
 text3 = "Closes"
 text4 = "10:00am"
 text5 = "11:59pm"
+text6 = "Updated: 11:42am"
 (font_width, font_height) = font.getsize(text)
 draw.text(
     (oled.width // 2 - font_width // 2, font_height // 2),
     text,
     font=font,
     fill=255,
+    anchor=m,
 )
 
 comp_height = font_height + 2
@@ -74,17 +76,20 @@ comp_height = font_height + 2
 (font3_width, font3_height) = font.getsize(text3)
 (font4_width, font4_height) = font.getsize(text4)
 (font5_width, font5_height) = font.getsize(text5)
+(font6_width, font6_height) = font.getsize(text6)
 draw.text(
     (font4_width // 2, (font2_height // 2) + comp_height),
     text2,
     font=font,
     fill=255,
+    anchor=m,
 )
 draw.text(
-    (oled.width - font5_width, (font2_height // 2) + comp_height),
+    (oled.width - font5_width//2, (font2_height // 2) + comp_height),
     text3,
     font=font,
     fill=255,
+    anchor=m,
 )
 
 comp_height = comp_height + 2 + font2_height
@@ -94,12 +99,21 @@ draw.text(
     text4,
     font=font,
     fill=255,
+    anchor=m,
 )
 draw.text(
-    (oled.width - font5_width, (font2_height // 2) + comp_height),
+    (oled.width - font5_width//2, (font2_height // 2) + comp_height),
     text5,
     font=font,
     fill=255,
+    anchor=m,
+)
+draw.text(
+    (oled.width//2 - font6_width//2, oled.width - (font6-width//2)),
+    text6,
+    font=font,
+    fill=255,
+    anchor=m,
 )
 
 

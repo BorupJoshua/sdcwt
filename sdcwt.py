@@ -339,7 +339,7 @@ while True:
     now = datetime.datetime.now()
 
     draw.rectangle(
-        (2,54,126,63),
+        (2,54,125,63),
         outline=0,
         fill=0,
     )

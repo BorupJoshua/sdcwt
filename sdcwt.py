@@ -175,8 +175,6 @@ while True:
             fill=0,
         )
 
-        oled.fill(0)
-        oled.show()
         text1 = now.strftime("%B %d, %Y")
 
         (font_width, font_height) = font.getsize(text1)
@@ -239,7 +237,7 @@ while True:
             )
 
             draw.line([(63,15),(63,53)], fill=1, width=1)
-
+            
 
         else:
             print("Looks like there's no hours posted today, assuming it's closed!")

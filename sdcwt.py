@@ -347,5 +347,8 @@ while True:
         fill=255,
         anchor="mm",
     )
+    oled.image(image)
+    oled.show()
+
     print("I'm sleepy, I'll see you in 5 minutes")
     time.sleep(60 * updateRate)

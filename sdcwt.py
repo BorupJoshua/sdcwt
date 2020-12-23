@@ -138,6 +138,8 @@ draw.text(
     anchor="mm",
 )
 
+oled.image(image)
+oled.show()
 while True:
     print("Updating information!")
 
@@ -166,13 +168,13 @@ while True:
         # Convert the string into date time objects
         parkOpen = datetime.datetime.strptime(parkOpenRaw, '%m-%d-%Y %I:%M:%S %p')
         parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
-        '''
+
         draw.rectangle(
             ([(1,1),(127,55)]),
             outline=0,
             fill=0,
         )
-        '''
+
         oled.fill(0)
         oled.show()
         text1 = now.strftime("%B %d, %Y")

@@ -71,7 +71,7 @@ draw.text(
     fill=255,
     anchor="mm",
 )
-(font6_width, font6_height) = font.getsize(text6)
+
 
 
 if parkOpen == True:
@@ -117,15 +117,17 @@ if parkOpen == True:
     draw.line([(63,15),(63,53)], fill=1, width=1)
 
 else:
+    text7 = 'Closed Today'
+    (font7_width, font7_height) = font.getsize(text7)
     draw.text(
-        (oled.width//2 - font6_width//2, 32),
+        (oled.width//2 - font7_width//2, 30),
         'Closed Today',
         font=font,
         fill=255,
         anchor="mm",
     )
 
-
+(font6_width, font6_height) = font.getsize(text6)
 draw.text(
     (oled.width//2 - font6_width//2, oled.height - (font6_height)),
     text6,

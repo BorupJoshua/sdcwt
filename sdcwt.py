@@ -5,6 +5,9 @@ import time
 import datetime
 import neopixel
 import board
+import digitalio
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_ssd1306
 
 #-- CONFIG
 UPDATE_DELAY = 5 # In minutes
@@ -57,6 +60,11 @@ WAIT_TIME_URL = "http://pulse.hfecorp.com/api/waitTimes/2"
 #PARK HOURS JSON
 DATE_TIME_URL = "https://www.silverdollarcity.com/api/cxa/DailySchedule/GetDailySchedule?did={687E9C32-0FAC-4F7E-A48B-5676DC4242D3}&hsi=True&dt=False&sd="
 
+# SCREEN CONFIG
+WIDTH = 128
+HEIGHT = 64
+BORDER = 1
+
 #-- END CONFIG
 
 def lookupColor(waitTime):
@@ -87,6 +95,44 @@ cleanUp = False
 iterNum = 0
 pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, pixel_order = neopixel.GRB, brightness = BRIGHTNESS, auto_write = True)
 
+i2c = board.I2C()
+oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c)
+
+# Generate screen
+# Clear display.
+oled.fill(0)
+oled.show()
+
+# Create blank image for drawing.
+# Make sure to create image with mode '1' for 1-bit color.
+image = Image.new("1", (oled.width, oled.height))
+
+# Get drawing object to draw on image.
+draw = ImageDraw.Draw(image)
+
+# Draw a white background
+draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
+
+# Draw a smaller inner rectangle
+
+draw.rectangle(
+    (BORDER, BORDER, oled.width - BORDER - 1, oled.height - BORDER - 1),
+    outline=0,
+    fill=0,
+)
+
+
+now = datetime.datetime.now()
+
+text6 = "Updated: " + now.strftime("%I:%M%p")
+(font6_width, font6_height) = font.getsize(text6)
+draw.text(
+    (oled.width//2 - font6_width//2, oled.height - (font6_height)),
+    text6,
+    font=font,
+    fill=255,
+    anchor="mm",
+)
 
 while True:
     print("Updating information!")
@@ -117,13 +163,95 @@ while True:
         parkOpen = datetime.datetime.strptime(parkOpenRaw, '%m-%d-%Y %I:%M:%S %p')
         parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
 
+        draw.rectangle(
+            ([(1,1),(127,55)]),
+            outline=0,
+            fill=0,
+        )
+        
+        text1 = now.strftime("%B %d, %Y")
+
+        (font_width, font_height) = font.getsize(text)
+        draw.text(
+            (oled.width // 2 - font_width // 2, font_height // 2-3),
+            text,
+            font=font,
+            fill=255,
+            anchor="mm",
+        )
+
+
         print("Today is ", today)
         if (parkClose is not None):
             print("The park opens at ", parkOpen)
             print("The park closes at ", parkClose)
             updateRate = UPDATE_DELAY
+            
+            # Update screen
+            text2 = "Opens"
+            text3 = "Closes"
+            text4 = parkOpen.strftime('%I:%M%p')
+            text5 = parkClose.strftime('%I:%M%p')
+            comp_height = font_height + 6
+
+            (font2_width, font2_height) = font.getsize(text2)
+            (font3_width, font3_height) = font.getsize(text3)
+            (font4_width, font4_height) = font.getsize(text4)
+            (font5_width, font5_height) = font.getsize(text5)
+            draw.text(
+                (18, (font2_height // 2) + comp_height),
+                text2,
+                font=font,
+                fill=255,
+                anchor="mm",
+            )
+            draw.text(
+                (oled.width - font5_width-8, (font2_height // 2) + comp_height),
+                text3,
+                font=font,
+                fill=255,
+                anchor="mm",
+            )
+
+            comp_height = comp_height + 2 + font2_height
+
+            draw.text( 
+                (12, (font2_height // 2) + comp_height),
+                text4,
+                font=font,
+                fill=255,
+                anchor="mm",
+            )
+            draw.text(
+                (oled.width - font5_width-10, (font2_height // 2) + comp_height),
+                text5,
+                font=font,
+                fill=255,
+                anchor="mm",
+            )
+
+            draw.line([(63,15),(63,53)], fill=1, width=1)
+
+
         else:
             print("Looks like there's no hours posted today, assuming it's closed!")
+
+            text7 = 'Closed Today'
+            (font7_width, font7_height) = font.getsize(text7)
+            draw.text(
+                (oled.width//2 - font7_width//2, 28),
+                'Closed Today',
+                font=font,
+                fill=255,
+                anchor="mm",
+            )
+
+
+        draw.line([(0,15),(128,15)], fill=1, width=2)
+
+        draw.line([(0,53),(128,53)], fill=1, width=1)
+
+        
 
     # end if
 
@@ -202,5 +330,16 @@ while True:
             print('Turn off lights')
             pixels.fill((0,0,0))
 
+    now = datetime.datetime.now()
+
+    text6 = "Updated: " + now.strftime("%I:%M%p")
+    (font6_width, font6_height) = font.getsize(text6)
+    draw.text(
+        (oled.width//2 - font6_width//2, oled.height - (font6_height)),
+        text6,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
     print("I'm sleepy, I'll see you in 5 minutes")
     time.sleep(60 * updateRate)

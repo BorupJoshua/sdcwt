@@ -116,6 +116,7 @@ draw.text(
     anchor="m",
 )
 
+draw.line((0,8), (128,8))
 
 
 

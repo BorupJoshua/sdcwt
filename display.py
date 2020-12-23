@@ -60,7 +60,7 @@ text2 = "Opens"
 text3 = "Closes"
 text4 = "00:00am"
 text5 = "00:00pm"
-text6 = "Updated: 11:42am"
+text6 = "Updated: " + now.strftime("%I:%M%p")
 (font_width, font_height) = font.getsize(text)
 draw.text(
     (oled.width // 2 - font_width // 2, font_height // 2),
@@ -116,7 +116,7 @@ draw.text(
     anchor="m",
 )
 
-draw.line((0,8), (128,8))
+draw.line([(0,8),(128,8)], width=2)
 
 
 

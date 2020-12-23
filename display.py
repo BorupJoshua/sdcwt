@@ -82,7 +82,7 @@ draw.text(
 )
 draw.text(
     (oled.width - font5_width // 2, (font2_height // 2) + comp_height),
-    text4,
+    text3,
     font=font,
     fill=255,
 )
@@ -91,7 +91,7 @@ comp_height = comp_height + 2 + font2_height
 
 draw.text(
     (font4_width // 2, (font2_height // 2) + comp_height),
-    text3,
+    text4,
     font=font,
     fill=255,
 )

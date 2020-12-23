@@ -58,7 +58,7 @@ now = datetime.datetime.now()
 text = now.strftime("%B %d, %Y")
 (font_width, font_height) = font.getsize(text)
 draw.text(
-    (oled.width // 2 - font_width // 2, font_height // 2 + BORDER/2 + 1),
+    (oled.width // 2 - font_width // 2, font_height // 2 + BORDER/2),
     text,
     font=font,
     fill=255,

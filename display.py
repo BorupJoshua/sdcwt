@@ -58,8 +58,8 @@ now = datetime.datetime.now()
 text = now.strftime("%B %d, %Y")
 text2 = "Opens"
 text3 = "Closes"
-text4 = "00:00am"
-text5 = "00:00pm"
+text4 = "10:00am"
+text5 = "09:00pm"
 text6 = "Updated: " + now.strftime("%I:%M%p")
 (font_width, font_height) = font.getsize(text)
 draw.text(
@@ -70,7 +70,7 @@ draw.text(
     anchor="mm",
 )
 
-comp_height = font_height + 2
+comp_height = font_height + 5
 
 (font2_width, font2_height) = font.getsize(text2)
 (font3_width, font3_height) = font.getsize(text3)
@@ -95,7 +95,7 @@ draw.text(
 comp_height = comp_height + 2 + font2_height
 
 draw.text(
-    (13, (font2_height // 2) + comp_height),
+    (12, (font2_height // 2) + comp_height),
     text4,
     font=font,
     fill=255,

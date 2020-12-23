@@ -170,7 +170,7 @@ while True:
         parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
 
         draw.rectangle(
-            ([(1,1),(127,55)]),
+            ([(1,1),(126,55)]),
             outline=0,
             fill=0,
         )

@@ -56,6 +56,10 @@ font = ImageFont.load_default()
 # Draw Some Text
 now = datetime.datetime.now()
 text = now.strftime("%B %d, %Y")
+text2 = "Opens"
+text3 = "Closes"
+text4 = "10:00 AM"
+text5 = "11:59 PM"
 (font_width, font_height) = font.getsize(text)
 draw.text(
     (oled.width // 2 - font_width // 2, font_height // 2),
@@ -63,6 +67,46 @@ draw.text(
     font=font,
     fill=255,
 )
+
+comp_height = font_height + 2
+
+(font2_wdith, font2_height) = font.getsize(text2)
+(font3_wdith, font3_height) = font.getsize(text3)
+(font4_wdith, font4_height) = font.getsize(text4)
+(font5_wdith, font5_height) = font.getsize(text5)
+draw.text(
+    (font4_width // 2, (font2_height // 2) + comp_height),
+    text2,
+    font=font,
+    fill=255,
+)
+draw.text(
+    (oled.width - font5_width // 2, (font2_height // 2) + comp_height),
+    text4,
+    font=font,
+    fill=255,
+)
+
+comp_height = comp_height + 2 + font_height2
+
+draw.text(
+    (font4_width // 2, (font2_height // 2) + comp_height),
+    text3,
+    font=font,
+    fill=255,
+)
+draw.text(
+    (oled.width - font5_width // 2, (font2_height // 2) + comp_height),
+    text5,
+    font=font,
+    fill=255,
+)
+
+
+
+
+
+
 
 # Display image
 oled.image(image)

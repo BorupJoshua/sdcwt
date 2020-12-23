@@ -40,16 +40,16 @@ image = Image.new("1", (oled.width, oled.height))
 draw = ImageDraw.Draw(image)
 
 # Draw a white background
-#draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
+draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
 
 # Draw a smaller inner rectangle
-'''
+
 draw.rectangle(
     (BORDER, BORDER, oled.width - BORDER - 1, oled.height - BORDER - 1),
     outline=0,
     fill=0,
 )
-'''
+
 # Load default font.
 font = ImageFont.load_default()
 
@@ -58,7 +58,7 @@ now = datetime.datetime.now()
 text = now.strftime("%B %d, %Y")
 (font_width, font_height) = font.getsize(text)
 draw.text(
-    (oled.width // 2 - font_width // 2, font_height // 2),
+    (oled.width // 2 - font_width // 2, font_height // 2 + BORDER/2 + 1),
     text,
     font=font,
     fill=255,

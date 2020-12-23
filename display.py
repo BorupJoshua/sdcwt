@@ -120,7 +120,7 @@ else:
     text7 = 'Closed Today'
     (font7_width, font7_height) = font.getsize(text7)
     draw.text(
-        (oled.width//2 - font7_width//2, 30),
+        (oled.width//2 - font7_width//2, 28),
         'Closed Today',
         font=font,
         fill=255,

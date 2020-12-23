@@ -133,6 +133,7 @@ draw.text(
     anchor="mm",
 )
 
+
 draw.line([(0,15),(128,15)], fill=1, width=2)
 draw.line([(0,53),(128,53)], fill=1, width=1)
 

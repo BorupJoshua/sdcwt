@@ -63,14 +63,14 @@ text5 = "09:00pm"
 text6 = "Updated: " + now.strftime("%I:%M%p")
 (font_width, font_height) = font.getsize(text)
 draw.text(
-    (oled.width // 2 - font_width // 2, font_height // 2-2),
+    (oled.width // 2 - font_width // 2, font_height // 2-3),
     text,
     font=font,
     fill=255,
     anchor="mm",
 )
 
-comp_height = font_height + 5
+comp_height = font_height + 6
 
 (font2_width, font2_height) = font.getsize(text2)
 (font3_width, font3_height) = font.getsize(text3)

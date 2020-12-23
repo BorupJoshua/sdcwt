@@ -109,7 +109,7 @@ draw.text(
     anchor="m",
 )
 draw.text(
-    (oled.width//2 - font6_width//2, oled.width - (font6-width//2)),
+    (oled.width//2 - font6_width//2, oled.width - (font6_width//2)),
     text6,
     font=font,
     fill=255,

@@ -87,7 +87,7 @@ draw.text(
     fill=255,
 )
 
-comp_height = comp_height + 2 + font_height2
+comp_height = comp_height + 2 + font2_height
 
 draw.text(
     (font4_width // 2, (font2_height // 2) + comp_height),

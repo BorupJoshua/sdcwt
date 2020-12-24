@@ -166,8 +166,9 @@ while True:
         parkCloseRaw = jsonDateObj['dates'][0]['parks'][0]['parkClose']
 
         # Convert the string into date time objects
-        parkOpen = datetime.datetime.strptime(parkOpenRaw, '%m-%d-%Y %I:%M:%S %p')
-        parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
+        if parkOpenRaw is not None:
+            parkOpen = datetime.datetime.strptime(parkOpenRaw, '%m-%d-%Y %I:%M:%S %p')
+            parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
 
         draw.rectangle(
             ([(1,1),(126,55)]),

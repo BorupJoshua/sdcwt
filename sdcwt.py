@@ -331,8 +331,8 @@ while keepUpdating:
                         pixels[LED_NUM[iterNum]] = lookupColor(i['waitTime'])
                 iterNum = iterNum + 1
 
-            # Reset our iter Object
-            iterNum = 0
+        # Reset our iter Object
+        iterNum = 0
 
             # Update leds here
     else:

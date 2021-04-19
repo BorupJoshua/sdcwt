@@ -296,39 +296,39 @@ while keepUpdating:
 
         # else update the wait times
         #elif (now >= (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) and now <= (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
-            print("We're open! Let's update the rides wait times!")
+        print("We're open! Let's update the rides wait times!")
             
             # Grab json from sdc's api
-            apiwaitData = urllib.request.urlopen(WAIT_TIME_URL).read().decode()
-            waitObj = json.loads(apiwaitData)
+        apiwaitData = urllib.request.urlopen(WAIT_TIME_URL).read().decode()
+        waitObj = json.loads(apiwaitData)
 
 
             # Tell us we need to clean up if the park closes
-            cleanup = False
+        cleanup = False
 
             # For every entry in the json file
-            for i in waitObj:
+        for i in waitObj:
 
-                # if the current entry in the file is one we listed
-                if i['rideName'] in RIDES:
-                    print(i['rideName'])
-                    pixels[LED_NUM[iterNum]] = (255,255,255)
-                    # If the waitTime is null, it's probably closed
-                    if (i['operationStatus'] != "OPEN" ):
-                        print('Closed')
-                        # -1 = closed
-                        waitTimes[iterNum] = -1
-                        pixels[LED_NUM[iterNum]] = COLOR_CLOSED
+            # if the current entry in the file is one we listed
+            if i['rideName'] in RIDES:
+                print(i['rideName'])
+                pixels[LED_NUM[iterNum]] = (255,255,255)
+                # If the waitTime is null, it's probably closed
+                if (i['operationStatus'] != "OPEN" ):
+                    print('Closed')
+                    # -1 = closed
+                    waitTimes[iterNum] = -1
+                    pixels[LED_NUM[iterNum]] = COLOR_CLOSED
+                else:
+                    if i['waitTime'] is None:
+                        print("Less than 15 minutes")
+                        waitTimes[iterNum] = 5
+                        pixels[LED_NUM[iterNum]] = lookupColor(5)
                     else:
-                        if i['waitTime'] is None:
-                            print("Less than 15 minutes")
-                            waitTimes[iterNum] = 5
-                            pixels[LED_NUM[iterNum]] = lookupColor(5)
-                        else:
-                            print(i['waitTime'])
-                            waitTimes[iterNum] = i['waitTime']
-                            pixels[LED_NUM[iterNum]] = lookupColor(i['waitTime'])
-                    iterNum = iterNum + 1
+                        print(i['waitTime'])
+                        waitTimes[iterNum] = i['waitTime']
+                        pixels[LED_NUM[iterNum]] = lookupColor(i['waitTime'])
+                iterNum = iterNum + 1
 
             # Reset our iter Object
             iterNum = 0

@@ -148,7 +148,7 @@ keepUpdating = True
 # Check the day, if set date is not todays date then update date then update park hours
 today = datetime.datetime.today().strftime("%Y-%m-%d")
 
-#TEMPDATE = "2021-4-24"
+TEMPDATE = "2021-4-24"
 
 print("Updating today's date!")
 # Set the last known date as today

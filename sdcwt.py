@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
 
 #-- CONFIG
-UPDATE_DELAY = 5 # In minutes
+UPDATE_DELAY = 0.25 # In minutes
 
 CLOSED_UPDATE_DELAY = 60 # In minutes
 

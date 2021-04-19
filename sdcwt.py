@@ -52,7 +52,7 @@ COLOR_CLOSED = (0,0,50)
 LED_PIN = board.D18
 
 #Total pins on your string
-LED_COUNT = 10
+LED_COUNT = 50
 
 #WAIT TIME JSON
 WAIT_TIME_URL = "http://pulse.hfecorp.com/api/waitTimes/2"

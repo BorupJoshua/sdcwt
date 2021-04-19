@@ -52,7 +52,7 @@ COLOR_CLOSED = (0,0,50)
 LED_PIN = board.D18
 
 #Total pins on your string
-LED_COUNT = 50
+LED_COUNT = 10
 
 #WAIT TIME JSON
 WAIT_TIME_URL = "http://pulse.hfecorp.com/api/waitTimes/2"
@@ -311,6 +311,7 @@ while keepUpdating:
 
             # if the current entry in the file is one we listed
             if i['rideName'] in RIDES:
+                print(iterNum)
                 print(i['rideName'])
                 pixels[LED_NUM[iterNum]] = (255,255,255)
                 # If the waitTime is null, it's probably closed

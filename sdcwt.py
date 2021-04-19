@@ -281,20 +281,21 @@ while keepUpdating:
         now = datetime.datetime.now()
         print(now)
         # If Time is 1 hour (or buffer time) before opening or 1 hours (or buffer time) after closing and this is new to us, turn off all the leds
-        if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
-            cleanUp = True
-            if (now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
-                keepUpdating = False
-            print("Looks like we're closed right now, let's turn off the leds!")
 
-            pixels.fill((0,0,0))
+        #if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
+            #cleanUp = True
+            #if (now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
+                #keepUpdating = False
+            #print("Looks like we're closed right now, let's turn off the leds!")
+
+            #pixels.fill((0,0,0))
 
             # turn off all LEDs
         
         
 
         # else update the wait times
-        elif (now >= (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) and now <= (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
+        #elif (now >= (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) and now <= (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
             print("We're open! Let's update the rides wait times!")
             
             # Grab json from sdc's api
@@ -359,7 +360,7 @@ while keepUpdating:
     oled.show()
 
     print("I'm sleepy, I'll see you in 5 minutes")
-    time.sleep(60 * uUPDATE_DELAY)
+    time.sleep(60 * UPDATE_DELAY)
 
     
 # Turn off the leds as well

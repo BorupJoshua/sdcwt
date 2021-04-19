@@ -140,136 +140,135 @@ draw.text(
 
 oled.image(image)
 oled.show()
-while True:
-    print("Updating information!")
 
-    # Check the day, if set date is not todays date then update date then update park hours
-    today = datetime.datetime.today().strftime("%Y-%m-%d")
 
-    if lastDate != today:
-        print("Updating today's date!")
-        # Set the last known date as today
-        lastDate = today
+print("Updating information!")
+keepUpdating = True
 
-        # Combine the perm date api ur  l and today's date
-        loadURL = DATE_TIME_URL + today
+# Check the day, if set date is not todays date then update date then update park hours
+today = datetime.datetime.today().strftime("%Y-%m-%d")
+
+print("Updating today's date!")
+# Set the last known date as today
+
+# Combine the perm date api ur  l and today's date
+loadURL = DATE_TIME_URL + today
         
-        # fetch the json file data from the url
-        apiDatesData = urllib.request.urlopen(DATE_TIME_URL).read().decode()
+# fetch the json file data from the url
+apiDatesData = urllib.request.urlopen(DATE_TIME_URL).read().decode()
 
-        # take the json file data and actually format it into a json object
-        jsonDateObj = json.loads(apiDatesData)
+# take the json file data and actually format it into a json object
+jsonDateObj = json.loads(apiDatesData)
 
-        # parse the json object to get the park opening and closings
-        # This is the most likely thing to mess up if SDC ever changes their date formatting.
-        parkOpenRaw = jsonDateObj['dates'][0]['parks'][0]['parkOpen']
-        parkCloseRaw = jsonDateObj['dates'][0]['parks'][0]['parkClose']
+# parse the json object to get the park opening and closings
+# This is the most likely thing to mess up if SDC ever changes their date formatting.
+parkOpenRaw = jsonDateObj['dates'][0]['parks'][0]['parkOpen']
+parkCloseRaw = jsonDateObj['dates'][0]['parks'][0]['parkClose']
 
-        # Convert the string into date time objects
-        if parkOpenRaw is not None:
-            parkOpen = datetime.datetime.strptime(parkOpenRaw, '%m-%d-%Y %I:%M:%S %p')
-            parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
+# Convert the string into date time objects
+if parkOpenRaw is not None:
+    parkOpen = datetime.datetime.strptime(parkOpenRaw, '%m-%d-%Y %I:%M:%S %p')
+    parkClose = datetime.datetime.strptime(parkCloseRaw, '%m-%d-%Y %I:%M:%S %p')
 
-        draw.rectangle(
-            ([(1,1),(126,55)]),
-            outline=0,
-            fill=0,
-        )
+draw.rectangle(
+    ([(1,1),(126,55)]),
+    outline=0,
+    fill=0,
+)
 
-        text1 = now.strftime("%B %d, %Y")
+text1 = now.strftime("%B %d, %Y")
 
-        (font_width, font_height) = font.getsize(text1)
-        draw.text(
-            (oled.width // 2 - font_width // 2, font_height // 2-3),
-            text1,
-            font=font,
-            fill=255,
-            anchor="mm",
-        )
+(font_width, font_height) = font.getsize(text1)
 
-
-        print("Today is ", today)
-        if (parkClose is not None):
-            print("The park opens at ", parkOpen)
-            print("The park closes at ", parkClose)
-            updateRate = UPDATE_DELAY
-            
-            # Update screen
-            text2 = "Opens"
-            text3 = "Closes"
-            text4 = parkOpen.strftime('%I:%M%p')
-            text5 = parkClose.strftime('%I:%M%p')
-            comp_height = font_height + 6
-
-            (font2_width, font2_height) = font.getsize(text2)
-            (font3_width, font3_height) = font.getsize(text3)
-            (font4_width, font4_height) = font.getsize(text4)
-            (font5_width, font5_height) = font.getsize(text5)
-            draw.text(
-                (18, (font2_height // 2) + comp_height),
-                text2,
-                font=font,
-                fill=255,
-                anchor="mm",
-            )
-            draw.text(
-                (oled.width - font5_width-8, (font2_height // 2) + comp_height),
-                text3,
-                font=font,
-                fill=255,
-                anchor="mm",
-            )
-
-            comp_height = comp_height + 2 + font2_height
-
-            draw.text( 
-                (12, (font2_height // 2) + comp_height),
-                text4,
-                font=font,
-                fill=255,
-                anchor="mm",
-            )
-            draw.text(
-                (oled.width - font5_width-10, (font2_height // 2) + comp_height),
-                text5,
-                font=font,
-                fill=255,
-                anchor="mm",
-            )
-
-            draw.line([(63,15),(63,53)], fill=1, width=1)
-            
-
-        else:
-            print("Looks like there's no hours posted today, assuming it's closed!")
-
-            text7 = 'Closed Today'
-            (font7_width, font7_height) = font.getsize(text7)
-            draw.text(
-                (oled.width//2 - font7_width//2, 28),
-                'Closed Today',
-                font=font,
-                fill=255,
-                anchor="mm",
-            )
+draw.text(
+    (oled.width // 2 - font_width // 2, font_height // 2-3),
+    text1,
+    font=font,
+    fill=255,
+    anchor="mm",
+)
 
 
-        draw.line([(0,15),(128,15)], fill=1, width=2)
+print("Today is ", today)
+if (parkClose is not None):
+    print("The park opens at ", parkOpen)
+    print("The park closes at ", parkClose)
 
-        draw.line([(0,53),(128,53)], fill=1, width=1)
+    keepUpdating = True
 
+    # Update screen
+    text2 = "Opens"
+    text3 = "Closes"
+    text4 = parkOpen.strftime('%I:%M%p')
+    text5 = parkClose.strftime('%I:%M%p')
+    comp_height = font_height + 6
+
+    (font2_width, font2_height) = font.getsize(text2)
+    (font3_width, font3_height) = font.getsize(text3)
+    (font4_width, font4_height) = font.getsize(text4)
+    (font5_width, font5_height) = font.getsize(text5)
+    draw.text(
+        (18, (font2_height // 2) + comp_height),
+        text2,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+    draw.text(
+        (oled.width - font5_width-8, (font2_height // 2) + comp_height),
+        text3,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+
+    comp_height = comp_height + 2 + font2_height
+
+    draw.text( 
+        (12, (font2_height // 2) + comp_height),
+        text4,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+    draw.text(
+        (oled.width - font5_width-10, (font2_height // 2) + comp_height),
+        text5,
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
+
+    draw.line([(63,15),(63,53)], fill=1, width=1)
         
 
-    # end if
+else:
+    print("Looks like there's no hours posted today, assuming it's closed!")
+
+    text7 = 'Closed Today'
+    (font7_width, font7_height) = font.getsize(text7)
+
+    keepUpdating = False
+
+    draw.text(
+        (oled.width//2 - font7_width//2, 28),
+        'Closed Today',
+        font=font,
+        fill=255,
+        anchor="mm",
+    )
 
 
+draw.line([(0,15),(128,15)], fill=1, width=2)
+
+draw.line([(0,53),(128,53)], fill=1, width=1)
+
+    
+while keepUpdating:
     # If the parkOpen is not null then continue, else we change the update check to be every hour.
     if parkOpen is not None:
 
         print("The park is NOT closed today!")
-
-        #Set our update rate to the one we defined
-        updateRate = UPDATE_DELAY
 
         # Create a now object of the current time.
         now = datetime.datetime.now()
@@ -278,7 +277,7 @@ while True:
         if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
             cleanUp = True
             if (now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
-                updateRate = CLOSED_UPDATE_DELAY
+                keepUpdating = False
             print("Looks like we're closed right now, let's turn off the leds!")
 
             pixels.fill((0,0,0))
@@ -328,14 +327,9 @@ while True:
 
             # Update leds here
     else:
-        print("Looks like the park isn't open today!  Let's make our updates slower!")
+        print("Looks like the park isn't open, exiting while loop")
         #Since the park is closed, let's lower our update rate to the closed update rate
-        updateRate = CLOSED_UPDATE_DELAY
-
-        if cleanUp is False:
-            # Turn off the leds as well
-            print('Turn off lights')
-            pixels.fill((0,0,0))
+        keepUpdating = False
 
     now = datetime.datetime.now()
 
@@ -358,4 +352,9 @@ while True:
     oled.show()
 
     print("I'm sleepy, I'll see you in 5 minutes")
-    time.sleep(60 * updateRate)
+    time.sleep(60 * uUPDATE_DELAY)
+
+    
+# Turn off the leds as well
+print('Turn off lights')
+pixels.fill((0,0,0))

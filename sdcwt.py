@@ -148,11 +148,13 @@ keepUpdating = True
 # Check the day, if set date is not todays date then update date then update park hours
 today = datetime.datetime.today().strftime("%Y-%m-%d")
 
+TEMPDATE = "2021-4-24"
+
 print("Updating today's date!")
 # Set the last known date as today
 
 # Combine the perm date api ur  l and today's date
-loadURL = DATE_TIME_URL + today
+loadURL = DATE_TIME_URL + TEMPDATE
         
 # fetch the json file data from the url
 apiDatesData = urllib.request.urlopen(DATE_TIME_URL).read().decode()

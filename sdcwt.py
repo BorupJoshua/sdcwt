@@ -264,6 +264,9 @@ draw.line([(0,15),(128,15)], fill=1, width=2)
 draw.line([(0,53),(128,53)], fill=1, width=1)
 
     
+oled.image(image)
+oled.show()
+
 while keepUpdating:
     # If the parkOpen is not null then continue, else we change the update check to be every hour.
     if parkOpen is not None:

@@ -118,14 +118,13 @@ font = ImageFont.load_default()
 draw.rectangle((0, 0, oled.width, oled.height), outline=255, fill=255)
 
 # Draw a smaller inner rectangle
-
 draw.rectangle(
     (BORDER, BORDER, oled.width - BORDER - 1, oled.height - BORDER - 1),
     outline=0,
     fill=0,
 )
 
-
+# Draw updated Text + get current time
 now = datetime.datetime.now()
 
 text6 = "Updated: " + now.strftime("%I:%M%p")
@@ -138,6 +137,8 @@ draw.text(
     anchor="mm",
 )
 
+
+# Display to the screen
 oled.image(image)
 oled.show()
 
@@ -363,5 +364,5 @@ while keepUpdating:
 
     
 # Turn off the leds as well
-print('Turn off lights')
+print('Exiting program, see you tomorrow!')
 pixels.fill((0,0,0))

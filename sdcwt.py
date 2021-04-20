@@ -282,10 +282,10 @@ while keepUpdating:
         print(now)
         # If Time is 1 hour (or buffer time) before opening or 1 hours (or buffer time) after closing and this is new to us, turn off all the leds
 
-        if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))) and cleanUp is False:
-            cleanUp = True
+        if (now < (parkOpen - datetime.timedelta(minutes=BUFFER_TIME)) or now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
             if (now > (parkClose + datetime.timedelta(minutes=BUFFER_TIME))):
                 keepUpdating = False
+                print("Looks like we've closed for the night")
             print("Looks like we're closed right now, let's turn off the leds!")
 
             pixels.fill((0,0,0))
